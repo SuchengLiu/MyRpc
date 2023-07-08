@@ -11,6 +11,7 @@
         <module name="my-rpc-example" />
         <module name="my-rpc-server" />
         <module name="my-rpc-codec" />
+        <module name="my-rpc-registry" />
         <module name="my-rpc-proto" />
         <module name="my-rpc-transport" />
         <module name="my-rpc-client" />

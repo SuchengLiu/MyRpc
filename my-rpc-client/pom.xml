@@ -45,6 +45,12 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.sucheng</groupId>
+            <artifactId>my-rpc-registry</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

@@ -31,9 +31,13 @@ public class Peer {
 
     @Override
     public String toString() {
-        return "Peer{" +
-                "host='" + host + '\'' +
-                ", port=" + port +
-                '}';
+        return "http://" + host + ":" + port;
+    }
+
+    public static Peer parseString(String url) {
+        String[] splits = url.split(":");
+        String host = splits[1].substring(2);
+        int port = Integer.parseInt(splits[2]);
+        return new Peer(host, port);
     }
 }

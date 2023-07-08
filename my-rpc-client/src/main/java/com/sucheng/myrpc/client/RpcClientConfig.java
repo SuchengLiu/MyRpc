@@ -5,6 +5,8 @@ import com.sucheng.myrpc.codec.Decoder;
 import com.sucheng.myrpc.codec.Encoder;
 import com.sucheng.myrpc.codec.JSONDecoder;
 import com.sucheng.myrpc.codec.JSONEncoder;
+import com.sucheng.myrpc.registry.ServiceDiscovery;
+import com.sucheng.myrpc.registry.ZookeeperServiceDiscovery;
 import com.sucheng.myrpc.transport.HTTPTransportClient;
 import com.sucheng.myrpc.transport.TransportClient;
 
@@ -17,6 +19,10 @@ public class RpcClientConfig {
     // 使用的序列化模块
     private Class<? extends Encoder> encoderClass = JSONEncoder.class;
     private Class<? extends Decoder> decoderClass = JSONDecoder.class;
+    // 注册中心
+    private Class<? extends ServiceDiscovery> discoveryClass = ZookeeperServiceDiscovery.class;
+    private String registryUrl = "127.0.0.1";
+
     // 路由选择策略
     private Class<? extends TransportSelector> transportSelectorClass = RandomTransportSelector.class;
     // 每个server与client的最大连接数量
@@ -25,6 +31,12 @@ public class RpcClientConfig {
     private List<Peer> servers = Arrays.asList(
             new Peer("127.0.0.1", 3000)
     );
+
+    public RpcClientConfig() {}
+
+    public RpcClientConfig(String registryUrl) {
+        this.registryUrl = registryUrl;
+    }
 
     public Class<? extends TransportClient> getTranportClass() {
         return tranportClass;
@@ -72,5 +84,21 @@ public class RpcClientConfig {
 
     public void setServers(List<Peer> servers) {
         this.servers = servers;
+    }
+
+    public Class<? extends ServiceDiscovery> getDiscoveryClass() {
+        return discoveryClass;
+    }
+
+    public void setDiscoveryClass(Class<? extends ServiceDiscovery> discoveryClass) {
+        this.discoveryClass = discoveryClass;
+    }
+
+    public String getRegistryUrl() {
+        return registryUrl;
+    }
+
+    public void setRegistryUrl(String registryUrl) {
+        this.registryUrl = registryUrl;
     }
 }
