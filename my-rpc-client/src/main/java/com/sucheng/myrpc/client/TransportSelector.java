@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * 路由选择
  */
+@Deprecated
 public interface TransportSelector {
     /**
      * 初始化selector
@@ -24,8 +25,8 @@ public interface TransportSelector {
     TransportClient select();
 
     /**
-     * 释放用完的client
-     * @param client
+     *
+     * @param client 释放用完的client
      */
     void release(TransportClient client);
 

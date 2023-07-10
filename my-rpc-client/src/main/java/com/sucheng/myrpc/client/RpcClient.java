@@ -16,8 +16,7 @@ public class RpcClient {
     private Decoder decoder;
     private ServiceDiscovery serviceDiscovery;
     private LoadBalance loadBalance;
-
-    private TransportSelector transportSelector;
+//    private TransportSelector transportSelector;
 
     public RpcClient() {
         this(new RpcClientConfig());
