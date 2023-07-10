@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="my-rpc-loadbalance" />
         <module name="my-rpc-common" />
         <module name="my-rpc-example" />
         <module name="my-rpc-server" />

@@ -5,6 +5,8 @@ import com.sucheng.myrpc.codec.Decoder;
 import com.sucheng.myrpc.codec.Encoder;
 import com.sucheng.myrpc.codec.JSONDecoder;
 import com.sucheng.myrpc.codec.JSONEncoder;
+import com.sucheng.myrpc.loadbalance.ConsistentHashLoadBalance;
+import com.sucheng.myrpc.loadbalance.LoadBalance;
 import com.sucheng.myrpc.registry.ServiceDiscovery;
 import com.sucheng.myrpc.registry.ZookeeperServiceDiscovery;
 import com.sucheng.myrpc.transport.HTTPTransportClient;
@@ -21,16 +23,19 @@ public class RpcClientConfig {
     private Class<? extends Decoder> decoderClass = JSONDecoder.class;
     // 注册中心
     private Class<? extends ServiceDiscovery> discoveryClass = ZookeeperServiceDiscovery.class;
+    // 注册中心ip
     private String registryUrl = "127.0.0.1";
+    // 负载均衡策略
+    private Class<? extends LoadBalance> loadBalanceClass = ConsistentHashLoadBalance.class;
 
-    // 路由选择策略
-    private Class<? extends TransportSelector> transportSelectorClass = RandomTransportSelector.class;
-    // 每个server与client的最大连接数量
-    private int connectCount = 1;
-    // 可以连接的服务器端点
-    private List<Peer> servers = Arrays.asList(
-            new Peer("127.0.0.1", 3000)
-    );
+//    // 路由选择策略
+//    private Class<? extends TransportSelector> transportSelectorClass = RandomTransportSelector.class;
+//    // 可以连接的服务器端点
+//    private List<Peer> servers = Arrays.asList(
+//            new Peer("127.0.0.1", 3000)
+//    );
+//    // 每个server连接client的数量
+//    private int connectCount = 1;
 
     public RpcClientConfig() {}
 
@@ -62,30 +67,6 @@ public class RpcClientConfig {
         this.decoderClass = decoderClass;
     }
 
-    public Class<? extends TransportSelector> getTransportSelectorClass() {
-        return transportSelectorClass;
-    }
-
-    public void setTransportSelectorClass(Class<? extends TransportSelector> transportSelectorClass) {
-        this.transportSelectorClass = transportSelectorClass;
-    }
-
-    public int getConnectCount() {
-        return connectCount;
-    }
-
-    public void setConnectCount(int connectCount) {
-        this.connectCount = connectCount;
-    }
-
-    public List<Peer> getServers() {
-        return servers;
-    }
-
-    public void setServers(List<Peer> servers) {
-        this.servers = servers;
-    }
-
     public Class<? extends ServiceDiscovery> getDiscoveryClass() {
         return discoveryClass;
     }
@@ -100,5 +81,13 @@ public class RpcClientConfig {
 
     public void setRegistryUrl(String registryUrl) {
         this.registryUrl = registryUrl;
+    }
+
+    public Class<? extends LoadBalance> getLoadBalanceClass() {
+        return loadBalanceClass;
+    }
+
+    public void setLoadBalanceClass(Class<? extends LoadBalance> loadBalanceClass) {
+        this.loadBalanceClass = loadBalanceClass;
     }
 }

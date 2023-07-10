@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>my-rpc-client</artifactId>
+    <artifactId>my-rpc-loadbalance</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -24,38 +24,13 @@
         </dependency>
 
         <dependency>
-            <groupId>com.sucheng</groupId>
-            <artifactId>my-rpc-transport</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.sucheng</groupId>
-            <artifactId>my-rpc-codec</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.sucheng</groupId>
-            <artifactId>my-rpc-common</artifactId>
-            <version>${project.version}</version>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
         </dependency>
 
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.sucheng</groupId>
-            <artifactId>my-rpc-registry</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.sucheng</groupId>
-            <artifactId>my-rpc-loadbalance</artifactId>
-            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

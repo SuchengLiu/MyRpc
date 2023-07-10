@@ -30,7 +30,7 @@ public class HTTPTransportServer implements TransportServer{
         // 创建servlet容器
         ServletContextHandler ctx = new ServletContextHandler();
         server.setHandler(ctx);
-        // 注册servlet，ServletHolder托管servlet
+        // 向servlet容器注册servlet，ServletHolder托管servlet
         ServletHolder holder = new ServletHolder(new RequestServlet());
         ctx.addServlet(holder, "/*");
     }

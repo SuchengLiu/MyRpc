@@ -14,6 +14,12 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * 基于Zookeeper实现的服务订阅机制
+ * 先从本地缓存获取服务的提供者列表，获取不到再从zookeeper拉取
+ * zookeeper的watcher会监控服务的子节点的变化，若子节点有变化，则重新获取最新子节点
+ * 将zookeeper拉取的子节点信息转换为服务提供至列表，并存入本地缓存
+ */
 @Slf4j
 public class ZookeeperServiceDiscovery implements ServiceDiscovery{
     // session超时时间
@@ -66,7 +72,7 @@ public class ZookeeperServiceDiscovery implements ServiceDiscovery{
                 @Override
                 public void process(WatchedEvent watchedEvent) {
                     if(watchedEvent.getType() == Event.EventType.NodeChildrenChanged) {
-                        // 若子节点有变化，则重新调用该方法（为了获取最新子节点中的数据）
+                        // 若子节点有变化，则重新调用该方法（为了获取最新子节点）
                         watchNode(zk, clazz);
                     }
                 }

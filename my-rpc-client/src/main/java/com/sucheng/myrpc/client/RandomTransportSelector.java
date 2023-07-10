@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@Deprecated
 @Slf4j
 public class RandomTransportSelector implements TransportSelector{
     /*

@@ -27,10 +27,11 @@ public class HTTPTransportClient implements TransportClient{
             urlConnection.setDoOutput(true);
             urlConnection.setUseCaches(false);
             urlConnection.setRequestMethod("POST");
-
+            // 正式与服务器建立连接
             urlConnection.connect();
+            // 将数据直接输出到服务器
             IOUtils.copy(data, urlConnection.getOutputStream());
-
+            // 等待服务器响应
             int resCode = urlConnection.getResponseCode();
             if(resCode == HttpURLConnection.HTTP_OK) {
                 return urlConnection.getInputStream();
