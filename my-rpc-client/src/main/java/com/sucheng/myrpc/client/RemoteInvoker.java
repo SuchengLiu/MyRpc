@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 /**
- * 调用远程服务的代理类
+ * 调用处理程序
  */
 @Slf4j
 public class RemoteInvoker implements InvocationHandler {
@@ -54,12 +54,12 @@ public class RemoteInvoker implements InvocationHandler {
     }
 
     /**
-     * 代理对象调用任何方法时都会把方法类型和参数信息交给invoke函数
-     * invoke函数负责给服务端发送请求，请求体中包含接口名，方法名和方法返回类型，参数类型和参数实际值
-     * 服务端收到请求后，根据请求体中的信息找到对应服务（函数）,和提供服务的对象。通过反射调用对应的方法。
-     * @param proxy 未使用
-     * @param method 当前调用的方法
-     * @param args 当前调用方法的参数
+     * 代理对象调用任何方法时都会把该方法和方法参数信息交给invoke函数
+     * invoke函数通过invokeRemote进行远程调用
+     * invokeRemote先向注册中心订阅服务提供者列表，再基于负载均衡策略选择一个服务提供者，客户端向该服务器发送请求，并等待服务器返回结果
+     * @param proxy 调用该方法的代理类实例
+     * @param method 在代理实例上调用的接口方法对应的Method实例
+     * @param args 在代理实例上的方法调用中传递的参数值
      * @return
      * @throws Throwable
      */

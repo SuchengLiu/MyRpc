@@ -4,6 +4,8 @@ import java.lang.reflect.Method;
 
 /**
  * 表示一个具体的服务
+ * target 服务提供者，单例
+ * method 提供的方法
  */
 public class ServiceInstance {
     private Object target;

@@ -51,7 +51,7 @@ public class RpcServer {
     }
 
     public <T> void register(Class<T> interfaceClass, T bean) {
-        // 向rpc服务器注册服务的具体实现
+        // 向rpc服务器注册服务接口和服务提供者
         serviceManager.register(interfaceClass, bean);
         // 向注册中心对应的服务接口注册当前rpc服务器
         serviceRegistry.publish(interfaceClass, new Peer(config.getIp(), config.getPort()), config.getRegistryUrl());

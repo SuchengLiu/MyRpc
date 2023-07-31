@@ -9,7 +9,7 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * 基于Zookeeper实现的注册中心
- * /rpc-service作为跟znode
+ * /rpc-service作为根znode
  * 服务名称作为次级znode
  * 理论上，下层的znode为对应的类型，provider或者consumer，再下层是对应类型的机器，由ip+port构成路径的临时znode
  * 实际实现中，没有使用consumer类型，只有provider类型才向注册中心注册，因此将后两层简化为一层
@@ -17,7 +17,7 @@ import java.util.concurrent.CountDownLatch;
 @Slf4j
 public class ZookeeperServiceRegistry implements ServiceRegistry{
     // session超时时间
-    final int sessionTimeout = 50000;
+    final int sessionTimeout = 5000;
     // 用于等待 SyncConnected 事件触发后继续执行当前线程
     CountDownLatch latch = new CountDownLatch(1);
 

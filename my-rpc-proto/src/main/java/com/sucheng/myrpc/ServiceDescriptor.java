@@ -6,6 +6,10 @@ import java.util.Objects;
 
 /**
  * 表示一个服务
+ * clazz 服务接口名
+ * method 方法名
+ * returnType 方法返回类型
+ * parameterTypes 方法参数类型
  */
 public class ServiceDescriptor {
     private String clazz;

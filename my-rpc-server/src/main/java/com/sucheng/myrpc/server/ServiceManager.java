@@ -23,7 +23,7 @@ public class ServiceManager {
     /**
      * 注册服务
      * @param interfaceClass 服务接口
-     * @param bean 服务提供者，提供 method 的 object，单例
+     * @param bean 服务提供者，单例
      */
     public <T> void register(Class<T> interfaceClass, T bean) {
         // 接口中的公共方法

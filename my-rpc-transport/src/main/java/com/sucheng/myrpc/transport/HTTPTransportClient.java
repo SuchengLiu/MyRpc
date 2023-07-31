@@ -29,9 +29,9 @@ public class HTTPTransportClient implements TransportClient{
             urlConnection.setRequestMethod("POST");
             // 正式与服务器建立连接
             urlConnection.connect();
-            // 将数据直接输出到服务器
+            // 将数据写入输出流
             IOUtils.copy(data, urlConnection.getOutputStream());
-            // 等待服务器响应
+            // 同步等待服务器响应，获取相应状态码
             int resCode = urlConnection.getResponseCode();
             if(resCode == HttpURLConnection.HTTP_OK) {
                 return urlConnection.getInputStream();

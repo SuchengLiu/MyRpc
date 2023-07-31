@@ -14,7 +14,7 @@ public interface TransportSelector {
      * 初始化selector
      * @param peers 可以连接的server端点的信息
      * @param count 每个server连接client的数量
-     * @param clazz client实现类的class
+     * @param clazz 网络客户端
      */
     void init(List<Peer> peers, int count, Class<? extends TransportClient> clazz);
 
